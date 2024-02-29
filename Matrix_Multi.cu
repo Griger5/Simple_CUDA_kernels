@@ -30,10 +30,10 @@ __global__ void matrixMultiply(int *a, int *b, int *c, int N) {
 }
 
 void cpu_matrixMulti(int *a, int *b, int *c, int N) {
-    for( int row = 0; row < N; ++row ) {
-        for( int col = 0; col < N; ++col ) {
+    for(int row=0; row<N; row++) {
+        for(int col=0; col<N; col++) {
             c[row * N + col] = 0;
-            for ( int k = 0; k < N; ++k ) {
+            for (int k=0; k<N; ++k) {
                 c[row * N + col] += a[row * N + k] * b[k * N + col];
             }
         }
@@ -42,8 +42,8 @@ void cpu_matrixMulti(int *a, int *b, int *c, int N) {
 
 void matrixMultiTest(int *a, int *b, int N) {
     bool error = false;
-    for( int row = 0; row < N && !error; ++row ) {
-        for( int col = 0; col < N && !error; ++col ) {
+    for(int row=0; row < N && !error; row++) {
+        for(int col=0; col < N && !error; col++) {
             if (a[row * N + col] != b[row * N + col]) {
                 printf("FOUND ERROR at b[%d][%d]\n", row, col);
                 error = true;
@@ -51,8 +51,9 @@ void matrixMultiTest(int *a, int *b, int N) {
             }
         }
     }
-    if (!error)
-    printf("Success!\n");
+    if (!error) {
+        printf("Success!\n");
+    }
 }
 
 int main() {
